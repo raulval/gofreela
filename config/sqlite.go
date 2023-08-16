@@ -3,8 +3,8 @@ package config
 import (
 	"os"
 
+	"github.com/glebarez/sqlite"
 	"github.com/raulval/gofreela/schemas"
-	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
