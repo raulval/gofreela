@@ -7,14 +7,17 @@ import (
 )
 
 type Project struct {
-	gorm.Model
-	Title       string
-	Client      string
-	Description string
-	Deadline    time.Time
-	Status      string
-	Value       float64
-	IsPaid      bool
+	ID          uint           `gorm:"primaryKey,autoIncrement" json:"id"`
+	CreatedAt   time.Time      `json:"createdAt"`
+	UpdatedAt   time.Time      `json:"updatedAt"`
+	DeletedAt   gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
+	Title       string         `gorm:"not null" json:"title"`
+	Client      string         `gorm:"not null" json:"client"`
+	Description string         `json:"description"`
+	Deadline    time.Time      `json:"deadline"`
+	Status      string         `gorm:"not null" json:"status"`
+	Value       float64        `gorm:"not null" json:"value"`
+	IsPaid      bool           `gorm:"not null" json:"isPaid"`
 }
 
 type ProjectResponse struct {
