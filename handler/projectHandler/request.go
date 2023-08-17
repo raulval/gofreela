@@ -10,23 +10,23 @@ func errParamIsRequired(name, typ string) error {
 }
 
 type CreateProjectRequest struct {
-	Title           string  `json:"title"`
-	Client          string  `json:"client"`
-	Description     string  `json:"description"`
-	Deadline        time.Time  `json:"deadline"`
-	Status          string  `json:"status"`
-	Value           float64 `json:"value"`
-	IsPaid 					*bool   `json:"isPaid"`
+	Title       string    `json:"title"`
+	Client      string    `json:"client"`
+	Description string    `json:"description"`
+	Deadline    time.Time `json:"deadline"`
+	Status      string    `json:"status"`
+	Value       float64   `json:"value"`
+	IsPaid      *bool     `json:"isPaid"`
 }
 
 type UpdateProjectRequest struct {
-	Title           string  `json:"title"`
-	Client          string  `json:"client"`
-	Description     string  `json:"description"`
-	Deadline        time.Time  `json:"deadline"`
-	Status          string  `json:"status"`
-	Value           float64 `json:"value"`
-	IsPaid 					*bool   `json:"isPaid"`
+	Title       string    `json:"title"`
+	Client      string    `json:"client"`
+	Description string    `json:"description"`
+	Deadline    time.Time `json:"deadline"`
+	Status      string    `json:"status"`
+	Value       float64   `json:"value"`
+	IsPaid      *bool     `json:"isPaid"`
 }
 
 func (req *CreateProjectRequest) ValidateCreateProjectRequest() error {

@@ -19,13 +19,13 @@ func CreateProjectHandler(ctx *gin.Context) {
 	}
 
 	project := schemas.Project{
-		Title:           request.Title,
-		Client:          request.Client,
-		Description:     request.Description,
-		Deadline:        request.Deadline,
-		Status:          request.Status,
-		Value:           request.Value,
-		IsPaid: *request.IsPaid,
+		Title:       request.Title,
+		Client:      request.Client,
+		Description: request.Description,
+		Deadline:    request.Deadline,
+		Status:      request.Status,
+		Value:       request.Value,
+		IsPaid:      *request.IsPaid,
 	}
 
 	if err := db.Create(&project).Error; err != nil {
