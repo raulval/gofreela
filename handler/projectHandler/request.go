@@ -53,3 +53,10 @@ func (req *CreateProjectRequest) ValidateCreateProjectRequest() error {
 	}
 	return nil
 }
+
+func (req *UpdateProjectRequest) ValidateUpdateProjectRequest() error {
+	if req == nil || req.Title == "" && req.Client == "" && req.Description == "" && req.Deadline.IsZero() && req.Status == "" && req.Value == 0 && req.IsPaid == nil {
+		return fmt.Errorf("at least one valid field must be provided")
+	}
+	return nil
+}
