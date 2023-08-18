@@ -1,4 +1,89 @@
+definitions:
+  projectHandler.CreateProjectRequest:
+    properties:
+      client:
+        type: string
+      deadline:
+        type: string
+      description:
+        type: string
+      isPaid:
+        type: boolean
+      status:
+        type: string
+      title:
+        type: string
+      value:
+        type: number
+    type: object
+  projectHandler.CreateProjectResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ProjectResponse'
+    type: object
+  projectHandler.ErrorResponse:
+    properties:
+      errorCode:
+        type: integer
+      message:
+        type: string
+    type: object
+  schemas.ProjectResponse:
+    properties:
+      client:
+        type: string
+      createdAt:
+        type: string
+      deadline:
+        type: string
+      deletedAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      isPaid:
+        type: boolean
+      status:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+      value:
+        type: number
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /project:
+    post:
+      consumes:
+      - application/json
+      description: Create a new project
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/projectHandler.CreateProjectRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/projectHandler.CreateProjectResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+      summary: Create project
+      tags:
+      - Project
 swagger: "2.0"

@@ -8,6 +8,18 @@ import (
 	"github.com/raulval/gofreela/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create project
+// @Description Create a new project
+// @Tags Project
+// @Accept json
+// @Produce json
+// @Param request body CreateProjectRequest true "Request body"
+// @Success 200 {object} CreateProjectResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /project [post]
 func CreateProjectHandler(ctx *gin.Context) {
 	request := &CreateProjectRequest{}
 
