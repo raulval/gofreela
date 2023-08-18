@@ -20,13 +20,13 @@ type CreateProjectRequest struct {
 }
 
 type UpdateProjectRequest struct {
-	Title       string    `json:"title"`
-	Client      string    `json:"client"`
-	Description string    `json:"description"`
-	Deadline    time.Time `json:"deadline"`
-	Status      string    `json:"status"`
-	Value       float64   `json:"value"`
-	IsPaid      *bool     `json:"isPaid"`
+	Title       string  `json:"title"`
+	Client      string  `json:"client"`
+	Description string  `json:"description"`
+	Deadline    string  `json:"deadline"`
+	Status      string  `json:"status"`
+	Value       float64 `json:"value"`
+	IsPaid      *bool   `json:"isPaid"`
 }
 
 func (req *CreateProjectRequest) ValidateCreateProjectRequest() error {
@@ -58,8 +58,26 @@ func (req *CreateProjectRequest) ValidateCreateProjectRequest() error {
 }
 
 func (req *UpdateProjectRequest) ValidateUpdateProjectRequest() error {
-	if req == nil || req.Title == "" && req.Client == "" && req.Description == "" && req.Deadline.IsZero() && req.Status == "" && req.Value == 0 && req.IsPaid == nil {
+	fmt.Println(req.Deadline)
+	if req == nil || req.Title == "" && req.Client == "" && req.Description == "" && req.Deadline == "" && req.Status == "" && req.Value == 0 && req.IsPaid == nil {
 		return fmt.Errorf("at least one valid field must be provided")
 	}
 	return nil
+}
+
+func ParseDeadline(deadline string) (time.Time, error) {
+	if deadline == "" {
+		return time.Time{}, nil
+	}
+
+	deadlineTime, err := time.Parse(time.RFC3339, deadline)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("invalid format for deadline, it must be in the format ISO 8601")
+	}
+
+	if deadlineTime.Before(time.Now()) {
+		return time.Time{}, fmt.Errorf("deadline cannot be in the past")
+	}
+
+	return deadlineTime, nil
 }

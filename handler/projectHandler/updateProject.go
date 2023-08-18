@@ -8,6 +8,20 @@ import (
 	"github.com/raulval/gofreela/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update project
+// @Description Update a project
+// @Tags Project
+// @Accept json
+// @Produce json
+// @Param id query string true "Project ID"
+// @Param request body UpdateProjectRequest true "Request body"
+// @Success 200 {object} UpdateProjectResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /project [put]
 func UpdateProjectHandler(ctx *gin.Context) {
 	request := &UpdateProjectRequest{}
 
@@ -49,8 +63,13 @@ func UpdateProjectHandler(ctx *gin.Context) {
 	if request.Description != "" {
 		project.Description = request.Description
 	}
-	if !request.Deadline.IsZero() {
-		project.Deadline = request.Deadline
+	if request.Deadline != "" {
+		deadlineTime, err := ParseDeadline(request.Deadline)
+		if err != nil {
+			sendError(ctx, http.StatusBadRequest, err.Error())
+			return
+		}
+		project.Deadline = deadlineTime
 	}
 	if request.Status != "" {
 		project.Status = request.Status
