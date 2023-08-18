@@ -38,6 +38,13 @@ definitions:
       data:
         $ref: '#/definitions/schemas.ProjectResponse'
     type: object
+  projectHandler.ListProjectsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.ProjectResponse'
+        type: array
+    type: object
   projectHandler.UpdateProjectRequest:
     properties:
       client:
@@ -214,6 +221,25 @@ paths:
           schema:
             $ref: '#/definitions/projectHandler.ErrorResponse'
       summary: Update project
+      tags:
+      - Project
+  /projects:
+    get:
+      consumes:
+      - application/json
+      description: List all projects
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/projectHandler.ListProjectsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+      summary: List projects
       tags:
       - Project
 swagger: "2.0"

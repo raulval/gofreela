@@ -208,6 +208,35 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/projects": {
+            "get": {
+                "description": "List all projects",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Project"
+                ],
+                "summary": "List projects",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.ListProjectsResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -269,6 +298,17 @@ const docTemplate = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/schemas.ProjectResponse"
+                }
+            }
+        },
+        "projectHandler.ListProjectsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/schemas.ProjectResponse"
+                    }
                 }
             }
         },
