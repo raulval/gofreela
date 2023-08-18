@@ -28,6 +28,11 @@ definitions:
       message:
         type: string
     type: object
+  projectHandler.GetProjectResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ProjectResponse'
+    type: object
   schemas.ProjectResponse:
     properties:
       client:
@@ -57,6 +62,66 @@ info:
   contact: {}
 paths:
   /project:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a project
+      parameters:
+      - description: Project ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/projectHandler.GetProjectResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+      summary: Delete project
+      tags:
+      - Project
+    get:
+      consumes:
+      - application/json
+      description: Get a project
+      parameters:
+      - description: Project ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/projectHandler.GetProjectResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/projectHandler.ErrorResponse'
+      summary: Get project
+      tags:
+      - Project
     post:
       consumes:
       - application/json

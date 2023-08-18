@@ -8,6 +8,18 @@ import (
 	"github.com/raulval/gofreela/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Get project
+// @Description Get a project
+// @Tags Project
+// @Accept json
+// @Produce json
+// @Param id query string true "Project ID"
+// @Success 200 {object} GetProjectResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /project [get]
 func GetProjectHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 

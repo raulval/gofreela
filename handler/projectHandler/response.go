@@ -30,3 +30,7 @@ type ErrorResponse struct {
 type CreateProjectResponse struct {
 	Data schemas.ProjectResponse `json:"data"`
 }
+
+type GetProjectResponse struct {
+	Data schemas.ProjectResponse `json:"data"`
+}
