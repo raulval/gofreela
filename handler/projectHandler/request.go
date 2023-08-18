@@ -43,7 +43,10 @@ func (req *CreateProjectRequest) ValidateCreateProjectRequest() error {
 		return errParamIsRequired("description", "string")
 	}
 	if req.Deadline.IsZero() {
-		return errParamIsRequired("deadline", "time.Time")
+		return fmt.Errorf("deadline is required and must be in the format ISO 8601")
+	}
+	if req.Deadline.Before(time.Now()) {
+		return fmt.Errorf("deadline cannot be in the past")
 	}
 	if req.Status == "" {
 		return errParamIsRequired("status", "string")
