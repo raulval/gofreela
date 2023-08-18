@@ -3,11 +3,12 @@ package schemas
 import (
 	"time"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type Project struct {
-	ID          uint           `gorm:"primaryKey,autoIncrement" json:"id"`
+	ID          uuid.UUID      `gorm:"primaryKey,type:uuid" json:"id"`
 	CreatedAt   time.Time      `json:"createdAt"`
 	UpdatedAt   time.Time      `json:"updatedAt"`
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"deletedAt,omitempty"`
@@ -21,7 +22,7 @@ type Project struct {
 }
 
 type ProjectResponse struct {
-	ID          uint      `json:"id"`
+	ID          uuid.UUID `json:"id"`
 	Title       string    `json:"title"`
 	Client      string    `json:"client"`
 	Description string    `json:"description"`
