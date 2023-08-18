@@ -59,6 +59,63 @@ const docTemplate = `{
                     }
                 }
             },
+            "put": {
+                "description": "Update a project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Update project",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Project ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.UpdateProjectRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.UpdateProjectResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/projectHandler.ErrorResponse"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "Create a new project",
                 "consumes": [
@@ -128,7 +185,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/projectHandler.GetProjectResponse"
+                            "$ref": "#/definitions/projectHandler.DeleteProjectResponse"
                         }
                     },
                     "400": {
@@ -188,6 +245,14 @@ const docTemplate = `{
                 }
             }
         },
+        "projectHandler.DeleteProjectResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.ProjectResponse"
+                }
+            }
+        },
         "projectHandler.ErrorResponse": {
             "type": "object",
             "properties": {
@@ -200,6 +265,40 @@ const docTemplate = `{
             }
         },
         "projectHandler.GetProjectResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.ProjectResponse"
+                }
+            }
+        },
+        "projectHandler.UpdateProjectRequest": {
+            "type": "object",
+            "properties": {
+                "client": {
+                    "type": "string"
+                },
+                "deadline": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "isPaid": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "projectHandler.UpdateProjectResponse": {
             "type": "object",
             "properties": {
                 "data": {

@@ -34,3 +34,15 @@ type CreateProjectResponse struct {
 type GetProjectResponse struct {
 	Data schemas.ProjectResponse `json:"data"`
 }
+
+type UpdateProjectResponse struct {
+	Data schemas.ProjectResponse `json:"data"`
+}
+
+type DeleteProjectResponse struct {
+	Data schemas.ProjectResponse `json:"data"`
+}
+
+type ListProjectsResponse struct {
+	Data []schemas.ProjectResponse `json:"data"`
+}

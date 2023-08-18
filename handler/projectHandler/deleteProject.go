@@ -8,13 +8,26 @@ import (
 	"github.com/raulval/gofreela/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete project
+// @Description Delete a project
+// @Tags Project
+// @Accept json
+// @Produce json
+// @Param id query string true "Project ID"
+// @Success 200 {object} DeleteProjectResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /project [delete]
 func DeleteProjectHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 
 	// Verify if id is a valid UUID
 	parsedID, err := uuid.Parse(id)
 	if err != nil {
-		sendError(ctx, http.StatusBadRequest, "invalid project id")
+		sendError(ctx, http.StatusBadRequest, "invalid project id, must be a valid UUID")
 		return
 	}
 
