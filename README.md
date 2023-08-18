@@ -9,10 +9,10 @@ GoFreela is a simple solution designed to help freelancers and independent profe
 - [🚀 Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-- [🐳 Docker Support](#docker-support)
+- [🐳 Docker Support](#docker)
 - [📝 License](#license)
 
-## 💻 Techs
+## 💻 Techs {#techs}
 
 - [Go (Golang)](https://go.dev/)
 - [Gin](https://github.com/gin-gonic/gin)
@@ -20,11 +20,11 @@ GoFreela is a simple solution designed to help freelancers and independent profe
 - [SQLite](https://www.sqlite.org/)
 - [Swaggo (Swagger)](https://github.com/swaggo/swag)
 
-## 🎨 Images
+## 🎨 Images {#images}
 
 <img src="./assets/swagger.png">
 
-## 🚀 Getting Started
+## 🚀 Getting Started {#getting-started}
 
 Follow these instructions to get GoFreela up and running on your local machine for development and testing purposes.
 
@@ -57,7 +57,7 @@ Follow these instructions to get GoFreela up and running on your local machine f
 
 2. Access the API documentation at **<http://localhost:8080/swagger/index.html>** in your web browser.
 
-## 🐳 Docker Support
+## 🐳 Docker Support {#docker}
 
 To run GoFreela in a Docker container, follow these steps:
 
@@ -73,6 +73,6 @@ docker build -t gofreela-api .
 docker run -p 8080:8080 gofreela-api
 ```
 
-## 📝 License
+## 📝 License {#license}
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
